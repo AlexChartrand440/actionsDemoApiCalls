@@ -23,4 +23,4 @@ jobs:
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: "echo 'Pull Requests Data: ${{ steps.get_pull_requests_data.outputs.data }}'"
+      - run: "echo '${{ steps.get_pull_requests_data.outputs.data }}' > pull_requests.json"
