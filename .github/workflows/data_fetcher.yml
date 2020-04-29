@@ -30,4 +30,4 @@ jobs:
           name: "pull_requests.json"
           tag_name: "pull_requests_data"
           created_by: "author.login"
-      - run: "echo latest release: ${{ steps.store_results.outputs.name }} (${{ steps.store_results.outputs.tag_name }}) by ${{ ${{ steps.store_results.outputs.login }}"
+      - run: "echo latest release: `${{ steps.store_results.outputs.name }}` (`${{ steps.store_results.outputs.tag_name }}`) by `${{ ${{ steps.store_results.outputs.login }}`"
