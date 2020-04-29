@@ -1,0 +1,25 @@
+name: Github GraphQL API Query
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  pullRequestDataFetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: octokit/graphql-action@v2.0.0
+        id: get_pull_requests_data
+        with:
+          query: |
+            query user($login: String!){
+              pullRequests(first:5, orderBy:{field: CREATED_AT, direction: DESC}){
+                nodes{
+                  title
+                }
+              }
+            }
+          login: "ashutosh1919"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: "echo 'Pull Requests Data: ${{ steps.get_pull_requests_data.outputs.data }}'"
