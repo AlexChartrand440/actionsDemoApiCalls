@@ -23,11 +23,8 @@ jobs:
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: gr2m/get-json-paths-action@v1.0.1
-        id: store_results
-        with:
-          json: ${{steps.get_pulll_requests_data.outputs}}
-          name: "pull_requests.json"
-          tag_name: "pull_requests_data"
-          created_by: "author.login"
-      - run: "echo latest release: `${{ steps.store_results.outputs.name }}` (`${{ steps.store_results.outputs.tag_name }}`) by `${{ steps.store_results.outputs.login }}`"
+      - run: |
+          echo `${{ steps.get_pull_requests_data.outputs.data }}` > pull_requests.json
+          git add .
+          git commit -m 'Pull requests updated'
+          git push
