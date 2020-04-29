@@ -12,10 +12,12 @@ jobs:
         id: get_pull_requests_data
         with:
           query: |
-            query user($login: String!){
-              pullRequests(first:5, orderBy:{field: CREATED_AT, direction: DESC}){
-                nodes{
-                  title
+            query{
+              user($login: String!){
+                pullRequests(first:5, orderBy:{field: CREATED_AT, direction: DESC}){
+                  nodes{
+                    title
+                  }
                 }
               }
             }
